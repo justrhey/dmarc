@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/*
+  DM ARC premium olive palette (Sally's spec).
+  Deep olive base, sage surfaces, warm cream text, gold + lime accents.
+*/
+@theme {
+  --color-olive-deep: #232a0d;
+  --color-olive: #3b461a;
+  --color-olive-600: #4a5722;
+  --color-sage: #6f7d3f;
+  --color-sage-soft: #8a9758;
+  --color-cream: #f5f2e6;
+  --color-cream-dim: #cfccb8;
+  --color-accent: #c9a24b;
+  --color-accent-soft: #d8b96e;
+  --color-lime: #bcd96b;
+  --color-lime-soft: #d3e89a;
+
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-sans: "Manrope Variable", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-olive);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-olive-deep);
+  }
+}
+
+/* Subtle film-grain / depth so the large olive fields don't read flat */
+.bg-grain {
+  background-image:
+    radial-gradient(
+      ellipse at top,
+      color-mix(in srgb, var(--color-sage) 22%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-olive-deep),
+      var(--color-olive) 35%,
+      var(--color-olive)
+    );
+}
