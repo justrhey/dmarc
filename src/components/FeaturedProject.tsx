@@ -1,20 +1,17 @@
-import { useReducedMotion } from "motion/react";
 import { Check } from "@phosphor-icons/react";
-import CircularGallery from "./CircularGallery";
-import type { CircularGalleryItem } from "./CircularGallery";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 
 /**
- * Projects gallery. The WebGL CircularGallery is the showcase centerpiece;
- * a static grid is rendered instead under prefers-reduced-motion.
- * Real DM ARC finished-project photography lives in /public/projects.
+ * Finished-project posters. Each is a full DM ARC project sheet (location
+ * title + photo collage on a white background); shown at its natural portrait
+ * shape in a tidy grid. Sheets live in /public/projects/posters.
  */
-const GALLERY: CircularGalleryItem[] = [
-  { image: "/projects/limay.jpg", text: "Limay, Bataan" },
-  { image: "/projects/pilar.jpg", text: "Pilar, Bataan" },
-  { image: "/projects/balanga.jpg", text: "Balanga, Bataan" },
-  { image: "/projects/munting.jpg", text: "Munting, Batangas" },
+const POSTERS = [
+  { src: "/projects/posters/limay.jpg", location: "Limay, Bataan" },
+  { src: "/projects/posters/pilar.jpg", location: "Pilar, Bataan" },
+  { src: "/projects/posters/balanga.jpg", location: "Balanga, Bataan" },
+  { src: "/projects/posters/dinalupihan.jpg", location: "Dinalupihan, Bataan" },
 ];
 
 const FEATURED = {
@@ -32,31 +29,7 @@ const FEATURED = {
   ],
 };
 
-function GalleryFallback() {
-  return (
-    <div className="grid gap-6 sm:grid-cols-3">
-      {GALLERY.map((item) => (
-        <figure
-          key={item.text}
-          className="overflow-hidden rounded-3xl border border-white/10 bg-olive-600/30"
-        >
-          <img
-            src={item.image}
-            alt={`DM ARC project in ${item.text}`}
-            className="aspect-[4/3] w-full object-cover"
-          />
-          <figcaption className="p-4 font-display text-base font-600 text-cream">
-            {item.text}
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-  );
-}
-
 export default function FeaturedProject() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="projects" className="px-6 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
@@ -66,30 +39,30 @@ export default function FeaturedProject() {
             Finished <span className="italic text-accent-soft">projects</span>
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-dim">
-            Drag or scroll through a few of the spaces we have delivered.
+            A look at homes we have designed and delivered across Bataan.
           </p>
         </Reveal>
-      </div>
 
-      {/* Gallery breaks out of the content max-width for an immersive sweep. */}
-      <div className="mt-10">
-        {reduce ? (
-          <div className="mx-auto max-w-6xl px-0 sm:px-6">
-            <GalleryFallback />
-          </div>
-        ) : (
-          <div className="relative h-[380px] sm:h-[520px]">
-            <CircularGallery
-              items={GALLERY}
-              bend={0}
-              textColor="#f5f2e6"
-              borderRadius={0.05}
-              font="500 30px 'Fraunces Variable'"
-              scrollSpeed={1.5}
-              scrollEase={0.05}
-            />
-          </div>
-        )}
+        {/* Portrait poster grid — each sheet keeps its own white background. */}
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {POSTERS.map((poster, i) => (
+            <Reveal key={poster.location} delay={0.08 * i}>
+              <a
+                href={poster.src}
+                target="_blank"
+                rel="noreferrer"
+                className="group block overflow-hidden rounded-2xl bg-cream shadow-lg shadow-black/30 ring-1 ring-white/10 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-accent/40"
+              >
+                <img
+                  src={poster.src}
+                  alt={`DM ARC finished project in ${poster.location}`}
+                  loading="lazy"
+                  className="aspect-[676/915] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </div>
 
       {/* Featured project detail with real house features. */}
