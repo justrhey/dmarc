@@ -48,16 +48,16 @@ export default function FeaturedProject() {
             Finished <span className="italic text-accent-soft">projects</span>
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-dim">
-            Drag or scroll through homes we have designed and delivered across
-            Bataan.
+            A selection of homes we have designed and delivered across Bataan.
           </p>
         </Reveal>
       </div>
 
-      {/* Moving poster gallery; static grid fallback under reduced-motion. */}
+      {/* Static poster grid on phones/tablets (reliable touch + render);
+          the moving WebGL gallery is reserved for desktop. */}
       <div className="mt-10">
-        {reduce ? (
-          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-0 sm:gap-5 sm:px-6 lg:grid-cols-4">
+        <div className={reduce ? "" : "lg:hidden"}>
+          <div className="mx-auto grid max-w-2xl grid-cols-2 gap-4 sm:gap-5">
             {POSTERS.map((poster) => (
               <a
                 key={poster.location}
@@ -75,8 +75,10 @@ export default function FeaturedProject() {
               </a>
             ))}
           </div>
-        ) : (
-          <div className="relative h-[460px] sm:h-[640px]">
+        </div>
+
+        {!reduce && (
+          <div className="relative hidden h-[640px] lg:block">
             <CircularGallery
               items={GALLERY}
               bend={0}
