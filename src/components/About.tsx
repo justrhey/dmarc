@@ -9,6 +9,7 @@ import {
   Buildings,
 } from "@phosphor-icons/react";
 import Reveal from "./Reveal";
+import Eyebrow from "./Eyebrow";
 
 const VALUES = [
   {
@@ -39,8 +40,8 @@ const STATS = [
   { Icon: Buildings, value: "Full-service", label: "Design to build" },
 ];
 
-// SWAP: replace with a real on-site / craftsmanship photo.
-const ABOUT_IMG = "https://picsum.photos/seed/dmarc-onsite-craft/900/1100";
+// DM ARC two-storey duplex render — the hero of the Our Story section.
+const ABOUT_IMG = "/projects/about-story.jpg";
 
 export default function About() {
   const reduce = useReducedMotion();
@@ -50,18 +51,21 @@ export default function About() {
       {/* Soft lime glow for depth behind the section. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-lime/10 blur-[120px]"
+        className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-accent/10 blur-[120px]"
       />
 
       <div className="relative mx-auto max-w-6xl">
         {/* Lead statement */}
+        <Eyebrow index="01" label="Who we are" />
         <Reveal>
-          <p className="max-w-3xl font-display text-2xl font-500 leading-snug text-cream sm:text-3xl">
+          <p className="mt-7 max-w-3xl font-display text-2xl font-400 leading-snug text-cream sm:text-[2rem]">
             DM Arc Construction is a trusted name in the construction industry,
             delivering high-quality building solutions for{" "}
-            <span className="text-lime">residential, commercial,</span> and{" "}
-            <span className="text-lime">infrastructure</span> projects. We bring
-            visions to life, on time and within budget.
+            <span className="italic text-accent-soft">
+              residential, commercial,
+            </span>{" "}
+            and <span className="italic text-accent-soft">infrastructure</span>{" "}
+            projects. We bring visions to life, on time and within budget.
           </p>
         </Reveal>
 
@@ -76,7 +80,7 @@ export default function About() {
           >
             <img
               src={ABOUT_IMG}
-              alt="DM ARC craftsmanship on site"
+              alt="DM ARC two-storey duplex home design"
               className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-olive-deep/80 via-transparent to-transparent" />
@@ -87,7 +91,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <p className="font-display text-3xl font-800 leading-none text-lime">
+              <p className="font-display text-3xl font-500 italic leading-none text-accent-soft">
                 Est. 2020
               </p>
               <p className="mt-1 text-xs text-cream-dim">
@@ -114,7 +118,7 @@ export default function About() {
             </Reveal>
 
             <motion.div
-              className="mt-8 grid grid-cols-3 gap-3"
+              className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3"
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-60px" }}
@@ -133,7 +137,7 @@ export default function About() {
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="rounded-2xl border border-white/10 bg-olive-600/40 p-4"
                 >
-                  <Icon size={22} weight="regular" className="text-lime" />
+                  <Icon size={22} weight="regular" className="text-accent" />
                   <p className="mt-3 font-display text-lg font-700 leading-tight text-cream">
                     {value}
                   </p>
@@ -173,9 +177,9 @@ export default function About() {
                 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={reduce ? undefined : { y: -6 }}
-                className="rounded-3xl border border-white/10 bg-olive-600/30 p-6 backdrop-blur-sm transition-colors hover:border-lime/40"
+                className="rounded-3xl border border-white/10 bg-olive-600/30 p-6 backdrop-blur-sm transition-colors hover:border-accent/40"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-olive-deep/40 text-lime">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-olive-deep/40 text-accent">
                   <Icon size={24} weight="regular" />
                 </span>
                 <h3 className="mt-4 font-display text-lg font-700 text-cream">

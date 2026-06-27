@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 /*
-  DM ARC premium olive palette (Sally's spec).
-  Deep olive base, sage surfaces, warm cream text, gold + lime accents.
+  DM ARC premium olive palette (Sally's spec) — editorial-luxury revision.
+  Deep olive base, sage surfaces, warm cream text. Gold is now the lead
+  accent; lime is held back for rare, intentional highlights.
 */
 @theme {
-  --color-olive-deep: #232a0d;
-  --color-olive: #3b461a;
-  --color-olive-600: #4a5722;
+  --color-olive-deep: #1f260b;
+  --color-olive: #2c350f;
+  --color-olive-600: #3b461a;
   --color-sage: #6f7d3f;
   --color-sage-soft: #8a9758;
   --color-cream: #f5f2e6;
-  --color-cream-dim: #cfccb8;
+  --color-cream-dim: #c8c4af;
   --color-accent: #c9a24b;
-  --color-accent-soft: #d8b96e;
+  --color-accent-soft: #e2c987;
   --color-lime: #bcd96b;
   --color-lime-soft: #d3e89a;
 
-  --font-display: "Poppins", system-ui, sans-serif;
+  /* Fraunces = editorial serif for headlines; Poppins kept for eyebrows/labels. */
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-label: "Poppins", system-ui, sans-serif;
   --font-sans: "Manrope Variable", system-ui, sans-serif;
 }
 
@@ -39,20 +42,63 @@
     background-color: var(--color-accent);
     color: var(--color-olive-deep);
   }
+
+  /* Optical sizing + a touch of softness make Fraunces read luxe, not stuffy. */
+  .font-display {
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 120, "SOFT" 30, "WONK" 0;
+    letter-spacing: -0.018em;
+  }
 }
 
-/* Subtle film-grain / depth so the large olive fields don't read flat */
+/*
+  Layered depth: a fine film grain over a soft vignette + vertical olive wash,
+  so the large fields read tactile rather than flat.
+*/
 .bg-grain {
+  position: relative;
   background-image:
     radial-gradient(
-      ellipse at top,
-      color-mix(in srgb, var(--color-sage) 22%, transparent),
-      transparent 60%
+      ellipse 90% 60% at 50% -10%,
+      color-mix(in srgb, var(--color-sage) 20%, transparent),
+      transparent 65%
     ),
     linear-gradient(
       to bottom,
       var(--color-olive-deep),
-      var(--color-olive) 35%,
+      var(--color-olive) 38%,
       var(--color-olive)
     );
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.bg-grain > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hairline that catches light on the top edge — the "expensive" border. */
+.edge {
+  border: 1px solid color-mix(in srgb, var(--color-cream) 8%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-cream) 7%, transparent);
+}
+
+/* Animated underline for editorial links. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
 }

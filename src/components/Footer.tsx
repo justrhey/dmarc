@@ -29,22 +29,22 @@ export default function Footer() {
       {/* Closing CTA band */}
       <div className="mx-auto max-w-6xl px-6 pb-14 pt-20">
         <Reveal>
-          <h2 className="max-w-2xl font-display text-4xl font-800 leading-[1.05] tracking-tight text-cream sm:text-6xl">
+          <h2 className="max-w-2xl font-display text-5xl font-400 leading-[1.05] text-cream sm:text-7xl">
             Let's build something
             <br />
-            that <span className="text-lime">lasts.</span>
+            that <span className="italic text-accent-soft">lasts.</span>
           </h2>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="tel:+639770931188"
-              className="flex items-center gap-2 rounded-lg bg-lime px-6 py-3 text-sm font-700 text-olive-deep transition-transform duration-200 hover:scale-105 active:scale-[0.98]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-accent px-7 py-3.5 text-sm font-600 text-olive-deep shadow-lg shadow-black/20 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:bg-accent-soft"
             >
               <Phone size={18} weight="fill" />
               0977 093 1188
             </a>
             <a
               href="mailto:dmarcconstruction@gmail.com"
-              className="flex items-center gap-2 rounded-lg border border-cream/30 px-6 py-3 text-sm font-600 text-cream transition-colors hover:border-lime hover:text-lime"
+              className="group inline-flex items-center gap-2.5 rounded-full border border-cream/20 px-7 py-3.5 text-sm font-600 text-cream transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:border-accent hover:text-accent"
             >
               <EnvelopeSimple size={18} weight="regular" />
               Email us
@@ -57,11 +57,11 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
         {/* Contact */}
         <Reveal>
-          <h3 className="font-display text-sm font-700 text-cream">Visit us</h3>
+          <h3 className="font-label text-[0.7rem] font-600 uppercase tracking-[0.2em] text-cream">Visit us</h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-dim">
             <li className="flex items-center gap-2.5">
-              <Phone size={16} weight="regular" className="shrink-0 text-lime" />
-              <a href="tel:+639770931188" className="hover:text-lime">
+              <Phone size={16} weight="regular" className="shrink-0 text-accent" />
+              <a href="tel:+639770931188" className="hover:text-accent">
                 0977 093 1188
               </a>
             </li>
@@ -69,11 +69,11 @@ export default function Footer() {
               <EnvelopeSimple
                 size={16}
                 weight="regular"
-                className="shrink-0 text-lime"
+                className="shrink-0 text-accent"
               />
               <a
                 href="mailto:dmarcconstruction@gmail.com"
-                className="hover:text-lime"
+                className="hover:text-accent"
               >
                 dmarcconstruction@gmail.com
               </a>
@@ -82,7 +82,7 @@ export default function Footer() {
               <MapPin
                 size={16}
                 weight="regular"
-                className="mt-0.5 shrink-0 text-lime"
+                className="mt-0.5 shrink-0 text-accent"
               />
               <span className="leading-relaxed">
                 Unit #7 The Silver's Place, 3 National Road, Abucay, Bataan
@@ -93,11 +93,11 @@ export default function Footer() {
 
         {/* Explore */}
         <Reveal delay={0.05}>
-          <h3 className="font-display text-sm font-700 text-cream">Explore</h3>
+          <h3 className="font-label text-[0.7rem] font-600 uppercase tracking-[0.2em] text-cream">Explore</h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-dim">
             {EXPLORE.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="hover:text-lime">
+                <a href={link.href} className="hover:text-accent">
                   {link.label}
                 </a>
               </li>
@@ -107,7 +107,7 @@ export default function Footer() {
 
         {/* Services (limited taste) */}
         <Reveal delay={0.1}>
-          <h3 className="font-display text-sm font-700 text-cream">Services</h3>
+          <h3 className="font-label text-[0.7rem] font-600 uppercase tracking-[0.2em] text-cream">Services</h3>
           <ul className="mt-4 space-y-3 text-sm text-cream-dim">
             {SERVICES.map((service) => (
               <li key={service}>{service}</li>
@@ -115,7 +115,7 @@ export default function Footer() {
             <li>
               <a
                 href="#services"
-                className="font-600 text-lime hover:text-lime-soft"
+                className="font-600 text-accent hover:text-accent-soft"
               >
                 and more
               </a>
@@ -125,8 +125,8 @@ export default function Footer() {
 
         {/* Upsell: see a selection, ask for more */}
         <Reveal delay={0.15}>
-          <div className="rounded-2xl border border-lime/25 bg-olive-600/30 p-5">
-            <h3 className="font-display text-sm font-700 text-cream">
+          <div className="rounded-2xl border border-accent/25 bg-olive-600/30 p-5">
+            <h3 className="font-label text-[0.7rem] font-600 uppercase tracking-[0.2em] text-cream">
               Want to see more?
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-cream-dim">
@@ -136,7 +136,7 @@ export default function Footer() {
             </p>
             <a
               href="mailto:dmarcconstruction@gmail.com?subject=Adding%20more%20to%20our%20website"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-700 text-lime hover:text-lime-soft"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-700 text-accent hover:text-accent-soft"
             >
               Request more
               <ArrowRight size={16} weight="bold" />
@@ -148,7 +148,7 @@ export default function Footer() {
       {/* Oversized brand signature: thick, rounded Baloo 2, upright. */}
       <div className="mx-auto max-w-6xl overflow-hidden px-6 pb-8">
         <span
-          className="inline-block select-none text-7xl font-800 leading-none text-lime sm:text-9xl"
+          className="inline-block select-none text-7xl font-800 leading-none text-accent sm:text-9xl"
           style={{
             fontFamily: '"Baloo 2", system-ui, sans-serif',
             letterSpacing: "-0.045em",
@@ -165,13 +165,13 @@ export default function Footer() {
             © {new Date().getFullYear()} DM Arc Construction Services. All
             rights reserved.
           </span>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-5">
             <a
               href="https://www.facebook.com/"
               target="_blank"
               rel="noreferrer"
               aria-label="DM Arc Construction Services on Facebook"
-              className="flex items-center gap-2 transition-colors hover:text-lime"
+              className="flex items-center gap-2 transition-colors hover:text-accent"
             >
               <FacebookLogo size={18} weight="fill" />
               Follow us on Facebook

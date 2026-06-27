@@ -3,26 +3,18 @@ import { Check } from "@phosphor-icons/react";
 import CircularGallery from "./CircularGallery";
 import type { CircularGalleryItem } from "./CircularGallery";
 import Reveal from "./Reveal";
+import Eyebrow from "./Eyebrow";
 
 /**
  * Projects gallery. The WebGL CircularGallery is the showcase centerpiece;
  * a static grid is rendered instead under prefers-reduced-motion.
- * SWAP: replace each `image` with a real DM ARC project photo.
- * Placeholders use Picsum seeded photography.
+ * Real DM ARC finished-project photography lives in /public/projects.
  */
 const GALLERY: CircularGalleryItem[] = [
-  {
-    image: "https://picsum.photos/seed/dmarc-clark-house/800/600",
-    text: "Clark, Pampanga",
-  },
-  {
-    image: "https://picsum.photos/seed/dmarc-munting-bungalow/800/600",
-    text: "Munting, Batangas",
-  },
-  {
-    image: "https://picsum.photos/seed/dmarc-dinalupihan/800/600",
-    text: "Dinalupihan, Bataan",
-  },
+  { image: "/projects/limay.jpg", text: "Limay, Bataan" },
+  { image: "/projects/pilar.jpg", text: "Pilar, Bataan" },
+  { image: "/projects/balanga.jpg", text: "Balanga, Bataan" },
+  { image: "/projects/munting.jpg", text: "Munting, Batangas" },
 ];
 
 const FEATURED = {
@@ -68,9 +60,10 @@ export default function FeaturedProject() {
   return (
     <section id="projects" className="px-6 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
+        <Eyebrow index="03" label="Selected work" />
         <Reveal>
-          <h2 className="max-w-2xl font-display text-3xl font-700 leading-tight tracking-tight text-cream sm:text-4xl">
-            Finished <span className="text-lime">projects</span>
+          <h2 className="mt-7 max-w-2xl font-display text-4xl font-400 leading-tight text-cream sm:text-5xl">
+            Finished <span className="italic text-accent-soft">projects</span>
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-dim">
             Drag or scroll through a few of the spaces we have delivered.
@@ -91,7 +84,7 @@ export default function FeaturedProject() {
               bend={0}
               textColor="#f5f2e6"
               borderRadius={0.05}
-              font="bold 28px Poppins"
+              font="500 30px 'Fraunces Variable'"
               scrollSpeed={1.5}
               scrollEase={0.05}
             />
@@ -102,14 +95,16 @@ export default function FeaturedProject() {
       {/* Featured project detail with real house features. */}
       <div className="mx-auto mt-12 max-w-6xl">
         <Reveal>
-          <div className="rounded-3xl border border-white/10 bg-olive-600/30 p-7 backdrop-blur-sm sm:p-9">
-            <p className="text-sm font-600 text-lime">
+          <div className="edge rounded-3xl bg-olive-600/25 p-7 backdrop-blur-sm sm:p-9">
+            <p className="font-label text-[0.7rem] font-600 uppercase tracking-[0.22em] text-accent">
               Finished project in {FEATURED.location}
             </p>
-            <h3 className="mt-1.5 font-display text-2xl font-700 text-cream">
+            <h3 className="mt-2 font-display text-3xl font-400 italic text-cream">
               {FEATURED.name}
             </h3>
-            <p className="mt-5 text-sm font-600 text-cream-dim">House Features</p>
+            <p className="mt-5 font-label text-[0.7rem] font-600 uppercase tracking-[0.18em] text-cream-dim">
+              House Features
+            </p>
             <ul className="mt-3 grid gap-x-8 gap-y-2.5 sm:grid-cols-2">
               {FEATURED.features.map((feature) => (
                 <li
@@ -119,7 +114,7 @@ export default function FeaturedProject() {
                   <Check
                     size={16}
                     weight="bold"
-                    className="mt-0.5 shrink-0 text-lime"
+                    className="mt-0.5 shrink-0 text-accent"
                   />
                   {feature}
                 </li>
