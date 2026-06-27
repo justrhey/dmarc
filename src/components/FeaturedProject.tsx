@@ -1,11 +1,14 @@
+import { useReducedMotion } from "motion/react";
 import { Check } from "@phosphor-icons/react";
+import CircularGallery from "./CircularGallery";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 
 /**
  * Finished-project posters. Each is a full DM ARC project sheet (location
- * title + photo collage on a white background); shown at its natural portrait
- * shape in a tidy grid. Sheets live in /public/projects/posters.
+ * title + photo collage on a white background). The WebGL CircularGallery
+ * sweeps through them; a static grid is shown under reduced-motion.
+ * Sheets live in /public/projects/posters.
  */
 const POSTERS = [
   { src: "/projects/posters/limay.jpg", location: "Limay, Bataan" },
@@ -13,6 +16,10 @@ const POSTERS = [
   { src: "/projects/posters/balanga.jpg", location: "Balanga, Bataan" },
   { src: "/projects/posters/dinalupihan.jpg", location: "Dinalupihan, Bataan" },
 ];
+
+// The location title is already printed on each poster, so the gallery
+// caption is left empty to avoid duplicating it.
+const GALLERY = POSTERS.map((p) => ({ image: p.src, text: "" }));
 
 const FEATURED = {
   location: "Clark, Pampanga",
@@ -30,6 +37,8 @@ const FEATURED = {
 };
 
 export default function FeaturedProject() {
+  const reduce = useReducedMotion();
+
   return (
     <section id="projects" className="px-6 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
@@ -39,30 +48,44 @@ export default function FeaturedProject() {
             Finished <span className="italic text-accent-soft">projects</span>
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-cream-dim">
-            A look at homes we have designed and delivered across Bataan.
+            Drag or scroll through homes we have designed and delivered across
+            Bataan.
           </p>
         </Reveal>
+      </div>
 
-        {/* Portrait poster grid — each sheet keeps its own white background. */}
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-          {POSTERS.map((poster, i) => (
-            <Reveal key={poster.location} delay={0.08 * i}>
+      {/* Moving poster gallery; static grid fallback under reduced-motion. */}
+      <div className="mt-10">
+        {reduce ? (
+          <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-0 sm:gap-5 sm:px-6 lg:grid-cols-4">
+            {POSTERS.map((poster) => (
               <a
+                key={poster.location}
                 href={poster.src}
                 target="_blank"
                 rel="noreferrer"
-                className="group block overflow-hidden rounded-2xl bg-cream shadow-lg shadow-black/30 ring-1 ring-white/10 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:ring-accent/40"
+                className="group block overflow-hidden rounded-2xl bg-cream shadow-lg shadow-black/30 ring-1 ring-white/10 transition-all duration-300 hover:-translate-y-1 hover:ring-accent/40"
               >
                 <img
                   src={poster.src}
                   alt={`DM ARC finished project in ${poster.location}`}
                   loading="lazy"
-                  className="aspect-[676/915] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="aspect-[676/915] w-full object-cover"
                 />
               </a>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="relative h-[460px] sm:h-[640px]">
+            <CircularGallery
+              items={GALLERY}
+              bend={0}
+              borderRadius={0.04}
+              scrollSpeed={1.5}
+              scrollEase={0.05}
+            />
+          </div>
+        )}
       </div>
 
       {/* Featured project detail with real house features. */}
